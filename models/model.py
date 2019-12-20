@@ -5,6 +5,11 @@ import numpy as np
 from sklearn.metrics import confusion_matrix, roc_auc_score
 from models.cnn import CNN
 
+'''
+Model Class
+Loads the NN and trains on the dataloader provided, config should provide the
+necessary configuration.
+'''
 class Model():
     def __init__(self, device, dataloader, config):
         self.net = CNN().to(device)
@@ -25,12 +30,14 @@ class Model():
         self.dataloader = dataloader
         self.checkpointDir = config['save_path'] + 'checkpoint_%02d.pt'
 
+
     def loadModel(self, epoch):
         checkpoint = torch.load(self.checkpointDir %
                                 (epoch), map_location=torch.device(self.device))
         self.net.load_state_dict(checkpoint['model_state_dict'])
         self.optimizer.load_state_dict(checkpoint['optim_state_dict'])
         self.scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
+
 
     def train(self, config):
         epochs = config['epochs']

@@ -7,7 +7,9 @@ import random
 import torch.utils.data
 import csv
 
-
+'''
+Dataloader class which implements pytorch dataloader, has option to use weighted sampler
+'''
 class Dataset(torch.utils.data.Dataset):
     def __init__(self, list_IDs, labels, id_map, datadir, random_seed, train=False):
         self.labels = labels
@@ -85,6 +87,7 @@ class Dataloader():
                                                       **validating_params)
         self.train_size = len(X_train)
         self.test_size = len(X_test)
+
 
 def create_weighted_sampler(y_train):
     ones = sum([x for x in y_train])
