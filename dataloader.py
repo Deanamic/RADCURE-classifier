@@ -77,8 +77,8 @@ class Dataloader():
                                                     **training_params)
 
         validating_params = {
-            'batch_size': 1,
-            'num_workers': 4
+            'batch_size': 2,
+            'num_workers': 2
         }
         validating_set = Dataset(X_test, y_map, id_map, datadir, random_seed)
         self.validating = torch.utils.data.DataLoader(validating_set,

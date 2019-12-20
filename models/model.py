@@ -23,7 +23,7 @@ class Model():
                                                    step_size = step_size,
                                                    gamma = lr_gamma)
         self.dataloader = dataloader
-        self.checkpointDir = config['save_path'] + 'checkpoint_%2d.pt'
+        self.checkpointDir = config['save_path'] + 'checkpoint_%02d.pt'
 
     def loadModel(self, epoch):
         checkpoint = torch.load(self.checkpointDir %
@@ -88,9 +88,9 @@ class Model():
             correct = correct + np.sum(output_class == labels.numpy())
             if(config['debug'] >= 1):
                 print("Truth: {} / Prediction: [{}/{}]"
-                      .format(labels.numpy()[0],
-                              output.detach().cpu().numpy()[0],
-                              output_class[0]), flush = True)
+                      .format(labels.numpy(),
+                              output.detach().cpu().numpy(),
+                              output_class), flush = True)
             label.extend(labels.numpy())
             predclass.extend(output_class)
             pred.extend(output.detach().cpu().numpy())
