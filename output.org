@@ -1,14 +1,14 @@
 ** Outputs
-| Architecture                    | Cor | Total |    ACC |   ROCAUC |  FP | FN | Epochs |
-|---------------------------------+-----+-------+--------+----------+-----+----+--------|
-| MixPooling5-1, 4FC, Skip        | 956 |  1035 | 0.9237 | 0.969209 |  36 | 32 |     20 |
-| MixPooling5-1, 4FC              | 944 |  1035 | 0.9121 | 0.962256 |  87 |  4 |     20 |
-| MaxPooling, 3 FC, 0.2 dropout   | 943 |  1035 | 0.9111 |  0.95843 |  56 | 34 |     20 |
-| MaxPooling, 3 FC                | 925 |  1035 | 0.8937 |  0.95072 |  31 | 79 |     10 |
-| MixPooling5-1, 4FC, 0.2 dropout | 925 |  1035 | 0.8937 | 0.951566 |  59 | 51 |     20 |
-| AvgPooling, 3 FC                | 884 |  1035 | 0.8541 | 0.911634 |  79 | 72 |     10 |
-| AvgPooling, 3 FC, 0.2 dropout   | 766 |  1035 | 0.7401 | 0.886911 | 232 | 27 |     20 |
-| MixPooling5-1, 4FC, Skip        |     |       |        |          |     |    |        |
+| Architecture                        | Cor | Total |    ACC |   ROCAUC |  FP | FN | Epochs |
+|-------------------------------------+-----+-------+--------+----------+-----+----+--------|
+| MixPooling5-1, 4FC, Skip            | 956 |  1035 | 0.9237 | 0.969209 |  36 | 32 |     20 |
+| MixPooling5-1, 4FC                  | 944 |  1035 | 0.9121 | 0.962256 |  87 |  4 |     20 |
+| MaxPooling, 3 FC, 0.2 dropout       | 943 |  1035 | 0.9111 |  0.95843 |  56 | 34 |     20 |
+| MaxPooling, 3 FC                    | 925 |  1035 | 0.8937 |  0.95072 |  31 | 79 |     10 |
+| MixPooling5-1, 4FC, 0.2 dropout     | 925 |  1035 | 0.8937 | 0.951566 |  59 | 51 |     20 |
+| AvgPooling, 3 FC                    | 884 |  1035 | 0.8541 | 0.911634 |  79 | 72 |     10 |
+| AvgPooling, 3 FC, 0.2 dropout       | 766 |  1035 | 0.7401 | 0.886911 | 232 | 27 |     20 |
+| MixPooling5-1, 5FC, Skip, Scheduler |     |  1035 |        |          |     |    |     15 |
 #+TBLFM: $4=$2/$3;%0.4f
 
 *** AveragePool, 3FC
@@ -21,7 +21,6 @@ orrect classictions: {884} / {1035}
 #+end_src
 
 *** AveragePool, 3FC, 0.2Dropout
-    
 #+begin_src text 
   {'input_scale_size': 256, 'weighted-sampling': True, ('train_ratio'): 0.5, 'epochs': 10, 'load_model': 10, 'learning_rate': 0.003, 'momentum': 0.9, 'weight_decay': 0.0001, 'step_size': 1, 'lr_gamma': 0.8, 'train': True, 'test': True, 'test_model_epoch': 20, 'random_seed': 520, 'image_path': '/cluster/projects/radiomics/Temp/RADCURE-npy/img/', 'labels_path': '/cluster/home/dzhu/RADCURE-classifier/data/labels.csv', 'save_path': '/cluster/home/dzhu/RADCURE-classifier/CNN/checkpoints/CNN-AP/', 'debug': 1, 'leakyrelu_param': 0.01, 'dropout_rate': 0.2, 'weighted_sampling': True}
   correct classictions: {766} / {1035} 
@@ -31,7 +30,6 @@ orrect classictions: {884} / {1035}
 #+end_src
 
 *** Maxpool, 3FC
-    
   #+begin_src text 
   {'input_scale_size': 256, 'weighted-sampling': True, 'train_ratio': 0.5, 'epochs': 10, 'load_model': 0, 'learning_rate': 0.003, 'momentum': 0.9, 'weight_decay': 0.0001, 'step_size': 1, 'lr_gamma': 0.8, 'train': True, 'test': True, 'test_model_epoch': 10, 'random_seed': 520, 'image_path': '/cluster/projects/radiomics/Temp/RADCURE-npy/img/', 'labels_path': '/cluster/home/dzhu/RADCURE-classifier/data/labels.csv', 'save_path': '/cluster/home/dzhu/RADCURE-classifier/CNN/checkpoints/CNN-MP/', 'debug': 1, 'leakyrelu_param': 0.01, 'dropout_rate': 0.2, 'weighted_sampling': True}
 Correct classictions: {925} / {1035} 
@@ -41,7 +39,6 @@ Correct classictions: {925} / {1035}
   #+end_src
 
 *** Maxpool, 3FC, 0.2 dropout
-    
   #+begin_src text 
   {'input_scale_size': 256, 'weighted-sampling': True, 'train_ratio': 0.5, 'epochs': 10, 'load_model': 10, 'learning_rate': 0.003, 'momentum': 0.9, 'weight_decay': 0.0001, 'step_size': 1, 'lr_gamma': 0.8, 'train': True, 'test': True, 'test_model_epoch': 20, 'random_seed': 520, 'image_path': '/cluster/projects/radiomics/Temp/RADCURE-npy/img/', 'labels_path': '/cluster/home/dzhu/RADCURE-classifier/data/labels.csv', 'save_path': '/cluster/home/dzhu/RADCURE-classifier/CNN/checkpoints/CNN-MP/', 'debug': 1, 'leakyrelu_param': 0.01, 'dropout_rate': 0.2, 'weighted_sampling': True}
 Correct classictions: {943} / {1035} 
@@ -51,7 +48,6 @@ Correct classictions: {943} / {1035}
   #+end_src
   
 *** Mix pooling 5-1, 4FC
-    
   #+begin_src text 
   {'input_scale_size': 256, 'weighted-sampling': True, 'train_ratio': 0.5, 'epochs': 20, 'load_model': 0, 'learning_rate': 0.003, 'momentum': 0.9, 'weight_decay': 0.0001, 'step_size': 1, 'lr_gamma': 0.8, 'train': True, 'test': True, 'test_model_epoch': 20, 'random_seed': 520, 'image_path': '/cluster/projects/radiomics/Temp/RADCURE-npy/img/', 'labels_path': '/cluster/home/dzhu/RADCURE-classifier/data/labels.csv', 'save_path': '/cluster/home/dzhu/RADCURE-classifier/CNN/checkpoints/CNN-D51/', 'debug': 1, 'leakyrelu_param': 0.01, 'dropout_rate': 0.0, 'weighted_sampling': True}
 Correct classictions: {944} / {1035} 
@@ -61,7 +57,6 @@ Correct classictions: {944} / {1035}
   #+end_src
   
 *** Mix pooling 5-1, 4FC, 0.2 dropout
-    
   #+begin_src text 
   {'input_scale_size': 256, 'weighted-sampling': True, 'train_ratio': 0.5, 'epochs': 20, 'load_model': 0, 'learning_rate': 0.003, 'momentum': 0.9, 'weight_decay': 0.0001, 'step_size': 1, 'lr_gamma': 0.8, 'train': True, 'test': True, 'test_model_epoch': 20, 'random_seed': 520, 'image_path': '/cluster/projects/radiomics/Temp/RADCURE-npy/img/', 'labels_path': '/cluster/home/dzhu/RADCURE-classifier/data/labels.csv', 'save_path': '/cluster/home/dzhu/RADCURE-classifier/CNN/checkpoints/CNN-D2/', 'debug': 1, 'leakyrelu_param': 0.01, 'dropout_rate': 0.2, 'weighted_sampling': True}
 Correct classictions: {925} / {1035} 
@@ -71,7 +66,6 @@ Correct classictions: {925} / {1035}
   #+end_src
   
 *** Mix pooling 5-1, 4FC, skip layers
-    
   #+begin_src text 
   {'input_scale_size': 256, 'weighted-sampling': True, 'train_ratio': 0.5, 'epochs': 20, 'load_model': 0, 'learning_rate': 0.003, 'momentum': 0.9, 'weight_decay': 0.0001, 'step_size': 1, 'lr_gamma': 0.8, 'train': False, 'test': True, 'test_model_epoch': 20, 'random_seed': 520, 'image_path': '/cluster/projects/radiomics/Temp/RADCURE-npy/img/', 'labels_path': '/cluster/home/dzhu/RADCURE-classifier/data/labels.csv', 'save_path': '/cluster/home/dzhu/RADCURE-classifier/CNN/checkpoints/CNN-SK/', 'debug': 1, 'leakyrelu_param': 0.01, 'dropout_rate': 0.0, 'weighted_sampling': True}
 Correct classictions: {956} / {1035} 

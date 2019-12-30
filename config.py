@@ -33,7 +33,7 @@ train_arg.add_argument('--learning-rate', type=float, default=0.003)
 train_arg.add_argument('--momentum', type=float, default=0.9)
 train_arg.add_argument('--weight-decay', type=float, default=0.0001)
 train_arg.add_argument('--step-size', type=int, default=1)
-train_arg.add_argument('--lr-gamma', type=int, default=0.8)
+train_arg.add_argument('--lr-gamma', type=float, default=0.8)
 add_bool_arg(train_arg, 'train')
 
 #Testing
