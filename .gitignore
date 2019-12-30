@@ -1,5 +1,6 @@
 __pycache__
-scripts*
+scripts/*
+!scripts/script-gpu.sh
 jupyter-notebooks
 checkpoints/
 models/lstm.py
