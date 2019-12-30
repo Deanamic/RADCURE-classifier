@@ -70,8 +70,8 @@ class Dataloader():
             train_sampler = create_weighted_sampler(y_train)
 
         training_params = {
-            'batch_size': 4,
-            'num_workers': 4
+            'batch_size': config['train_batch_size'],
+            'num_workers': config['train_workers']
         }
         training_set = Dataset(X_train, y_map, id_map, datadir, random_seed)
         self.training = torch.utils.data.DataLoader(training_set,
@@ -79,8 +79,8 @@ class Dataloader():
                                                     **training_params)
 
         validating_params = {
-            'batch_size': 2,
-            'num_workers': 2
+            'batch_size': config['test_batch_size'],
+            'num_workers': config['test_workers']
         }
         validating_set = Dataset(X_test, y_map, id_map, datadir, random_seed)
         self.validating = torch.utils.data.DataLoader(validating_set,

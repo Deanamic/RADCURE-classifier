@@ -6,6 +6,7 @@ import torch
 def main(config):
     checkpointDir = "/cluster/home/dzhu/RADCURE-classifier/CNN/checkpoints/CNN1/checkpoint_%02d.pt"
     device = torch.device("cuda:0" if (torch.cuda.is_available()) else "cpu")
+    print(device)
     dataloader = Dataloader(config)
     model = Model(device, dataloader, config)
     if(config['train']):

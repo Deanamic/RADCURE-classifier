@@ -12,7 +12,7 @@ necessary configuration.
 '''
 class Model():
     def __init__(self, device, dataloader, config):
-        self.net = CNN().to(device)
+        self.net = CNN(config).to(device)
         self.device = device
         self.criterion = nn.BCELoss()
         lr = config['learning_rate']
@@ -35,11 +35,12 @@ class Model():
         checkpoint = torch.load(self.checkpointDir %
                                 (epoch), map_location=torch.device(self.device))
         self.net.load_state_dict(checkpoint['model_state_dict'])
-        self.optimizer.load_state_dict(checkpoint['optim_state_dict'])
+        self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         self.scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
 
 
     def train(self, config):
+        debugIter = config['print_period']
         epochs = config['epochs']
         resumeTraining = config['load_model']
 
@@ -61,9 +62,9 @@ class Model():
                 self.optimizer.step()
 
                 running_loss += loss.item()
-                if (config['debug'] >= 1 and iteration % 30 == 29):
+                if (config['debug'] >= 1 and iteration % debugIter == debugIter-1):
                     print('[%2d/%5d] loss: %.5f' %
-                          (I + 1, iteration + 1, running_loss/30), flush=True)
+                          (I + 1, iteration + 1, running_loss/debugIter), flush=True)
                     running_loss = 0.0
                 iteration = iteration + 1
 

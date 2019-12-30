@@ -1,8 +1,5 @@
 import argparse
 
-def str2bool(v):
-    return v.lower() in ('true', '1')
-
 arg_lists = []
 parser = argparse.ArgumentParser()
 
@@ -23,6 +20,10 @@ data_arg.add_argument('--input-scale-size', type=int, metavar='N', default=256,
                       help='Images will be scaled to have same length width and depth')
 add_bool_arg(data_arg, 'weighted-sampling', True, 'Sample weights using 1/class_size')
 data_arg.add_argument('--train-ratio', type=float, metavar='r', default=0.8, help='Ratio of labels used for training')
+data_arg.add_argument('--train-batch-size', type=int, default=4, help='Size of the training batches')
+data_arg.add_argument('--train-workers', type=int, default=4, help='Number of train workers')
+data_arg.add_argument('--test-batch-size', type=int, default=4, help='Size of the testing batches')
+data_arg.add_argument('--test-workers', type=int, default=4, help='Number of test workers')
 
 # Training
 train_arg = add_argument_group('Training')
@@ -47,11 +48,16 @@ misc_arg.add_argument('--image-path', type=str, default='')
 misc_arg.add_argument('--labels-path', type=str, default='')
 misc_arg.add_argument('--save-path', type=str, default='')
 misc_arg.add_argument('--debug', type=int, default=0)
+misc_arg.add_argument('--print-period', type=int, default=30)
 
 #Network
 net_arg = add_argument_group('Network')
 net_arg.add_argument('--leakyrelu-param', type=float, default=0.01)
 net_arg.add_argument('--dropout-rate', type=float, default = 0.1)
+net_arg.add_argument('--linear-layers', type=int, default = 4)
+net_arg.add_argument('--conv-layers', type=int, default = 6)
+add_bool_arg(net_arg, 'skip-layers')
+
 def get_config():
     config, unparsed = parser.parse_known_args()
     return config, unparsed

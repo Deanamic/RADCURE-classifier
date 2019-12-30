@@ -1,3 +1,6 @@
 __pycache__
 scripts*
 jupyter-notebooks
+checkpoints/
+models/lstm.py
+outputs/
